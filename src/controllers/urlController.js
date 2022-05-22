@@ -1,6 +1,6 @@
 const urlModel = require("../models/urlModel")
 const nanoId = require("nanoid")
-const validUrl = require("valid-url")
+//const validUrl = require("valid-url")
 const redis = require("redis");
 const { promisify } = require("util");
 
@@ -52,7 +52,7 @@ const createShortUrl = async function (req, res) {
         if (!isValid(requestBody.longUrl))
             return res.status(400).send({ status: false, message: "Enter Url in LongUrl key" })
 
-        // if (!validUrl.isUri(requestBody.longUrl))
+        // if (!validUrl.isWebUri(requestBody.longUrl))
         //     return res.status(400).send({ status: false, message: "Enter valid url" });
         let regx = /^(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})?$/;
         if (!regx.test(requestBody.longUrl)) {
